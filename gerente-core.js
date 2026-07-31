@@ -1,10 +1,10 @@
 /**
- * AGROVANT AGRICOLA CONTROL - Motor de Auditoría y Semáforo de Maduración
- * Cliente: AGROVANT AGRÍCOLA (Tractores y Maquinaria Agrícola)
+ * TRAIL-MAQ CONTROL - Motor de Auditoría y Semáforo de Maduración
+ * Cliente: TRAIL-MAQ (Carrocerías, Cajas Secas y Remolques)
  */
 
-const CLAVE_GERENCIAL_ACCESO = "AGROVANT2026"; 
-const ASESORES_AGENCIA = ["Asesor Tractores Medianos", "Asesor Tractores Alta Potencia", "Asesor Cosechadoras", "Asesor Implementos", "Asesor Financiamiento", "Asesor Paquetes de Rancho"];
+const CLAVE_GERENCIAL_ACCESO = "TRAILMAQ2026"; 
+const ASESORES_AGENCIA = ["Asesor Cajas Secas", "Asesor Cajas Refrigeradas", "Asesor Plataformas", "Asesor Tolvas y Volteos", "Asesor Financiamiento", "Asesor Paquetes de Flotillas"];
 
 function verificarAccesoGerente() {
     const inputClave = document.getElementById('pass-input').value;
@@ -32,7 +32,7 @@ function cargarYProcesarAuditoria() {
     let verdes = 0; let amarillos = 0; let rojos = 0;
     
     if (total === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#555; padding: 20px;">No hay registros de productores todavía.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#555; padding: 20px;">No hay registros de transportistas todavía.</td></tr>`;
         actualizarIndicadoresKPI(0, 0, 0, 0);
         return;
     }
@@ -89,7 +89,7 @@ function exportarAExcel() {
     if (registros.length === 0) { alert("No hay datos para exportar."); return; }
     
     let csvContent = "data:text/csv;charset=utf-8,\uFEFF"; 
-    csvContent += "Fecha,Productor,WhatsApp,Tractor / Equipo Interes,Aplicacion Parcela,Prioridad,Asesor Asignado\n";
+    csvContent += "Fecha,Transportista,WhatsApp,Carroceria / Remolque Interes,Operacion Ruta,Prioridad,Asesor Asignado\n";
     
     registros.forEach((p) => {
         csvContent += `"${p.fecha_registro || ''}","${p.nombre || ''}","${p.whatsapp || ''}","${p.modelo || ''}","${p.uso || ''}","${p.prioridad || ''}","${p.asesor || ''}"\n`;
@@ -98,7 +98,7 @@ function exportarAExcel() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "Reporte_Leads_Agrovant_Agricola.csv");
+    link.setAttribute("download", "Reporte_Leads_Trail_Maq.csv");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
