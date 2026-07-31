@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
+    <link rel="icon" href="data:,">
+    
+    <!-- CONFIGURACIÓN DE OPEN GRAPH (OG SHARE) MEJORADA -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://demo-agricola.pideya.contact/" />
+    <meta property="og:title" content="TRAIL-MAQ … potencia implacable para tu producción." />
+    <meta property="og:description" content="Explora la experiencia TRAIL-MAQ. Potencia, durabilidad y tecnología de precisión para tu empresa." />
+    
+    <!-- Ruta absoluta apuntando a la nueva imagen y dominio de Cloudflare -->
+    <meta property="og:image" content="https://demo-agricola.pideya.contact/og_agricola.jpg" />
+    <meta property="og:image:secure_url" content="https://demo-agricola.pideya.contact/og_agricola.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <title>TRAIL-MAQ | CONECTA CARD</title>
+    
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <section id="portada-hub" class="main-hub">
+        <header class="magazine-header">
+            <div class="header-title-container">
+                <h1 class="agency-name">TRAIL-MAQ</h1>
+                <div class="download-track-container">
+                    </div>
+            </div>
+            <img src="assets/brand/logo.png" alt="Logo BMW" class="agency-logo">
+        </header>
+
+        <div class="mosaic-grid">
+            <div class="mosaic-item hero-block" onclick="openProfileZoom()">
+                <img id="profile-pic-img" src="assets/hero/main-photo.jpg" alt="POWER CONSTRUCTION">
+                <div class="hero-overlay">
+                    <span class="edition-label">FABRICANTES DE CARROCERIAS</span>
+                    <h2 class="hero-title">TRAIL-MAQ</h2>
+                </div>
+            </div>
+
+            <div class="mosaic-item menu-block">
+                <div class="magazine-menu-grid">
+                    <button class="mag-btn" onclick="showAppContent('cat1')">
+                        <span class="num">01</span> QUIÉNES SOMOS
+                    </button>
+                    <button class="mag-btn" onclick="showAppContent('cat2')">
+                        <span class="num">02</span> EXCELENCIA
+                    </button>
+                    <button class="mag-btn" onclick="showAppContent('cat3')">
+                        <span class="num">03</span> ASISTENTE RAPIDO Y DUDAS
+                    </button>
+                    <button class="mag-btn" onclick="showAppContent('cat4')">
+                        <span class="num">04</span> WHATSAPP Y REDES SOCIALES
+                    </button>
+                </div>
+            </div>
+
+            <div class="mosaic-item video-block" onclick="openYouTubeVideo()">
+                <div class="video-preview" id="yt-iframe-container">
+                    <img src="assets/hero/video-thumb.jpg" alt="BMW Test Drive" id="yt-thumb-img">
+                    <div class="yt-play-mini" id="yt-play-icon"><i class="fab fa-youtube"></i></div>
+                </div>
+                <span class="block-label">TEST DRIVE / RECORRIDO VIRTUAL</span>
+            </div>
+
+            <!-- BLOQUE DE EVOLUCIÓN COMPLETAMENTE REUBICADO ABAJO DEL VIDEO -->
+            <div class="mosaic-item custom-actions-block">
+                <button class="btn-custom-action btn-recommended-businesses" onclick="openBrandModal('modal-negocios')">
+                    VIDEOS / VIVE CON NOSOTROS LA EVOLUCION
+                </button>
+            </div>
+
+            <div class="mosaic-item lead-block">
+                <button type="button" onclick="abrirCuestionario()" class="btn-shiny-gold shine-effect">
+                    <i class="fas fa-truck-moving" style="margin-right: 8px;"></i> ¡ELIGE A TU ASESOR EN CARROCERÍAS, CAJAS SECAS Y REMOLQUES / MAPS!
+                </button>
+            </div>
+
+            <!-- MENÚ DE CONTACTO - SE GENERA DINÁMICAMENTE POR SCRIPT -->
+            <div id="miMenuContacto" class="menu-oculto" onclick="cerrarMenu()">
+                <div class="menu-contenido" onclick="event.stopPropagation()">
+                    <div class="bloque-mapa-guia" style="text-align: center; padding: 5px 0 15px 0; width: 100%;">
+                        <h3 style="font-size: 0.95rem; font-weight: bold; color: #fff; text-transform: uppercase; margin-bottom: 4px; font-family: 'Montserrat', sans-serif;">Contacta a tu Asesor Digital</h3>
+                        <p style="font-size: 0.7rem; color: rgba(255,255,255,0.7); margin-bottom: 12px; font-family: 'Montserrat', sans-serif; padding: 0 10px;">Elige al asesor de tu preferencia para recibir atención inmediata / Da clic a su nombre.</p>
+                        
+                        <!-- CÓMO LLEGAR DIRECTO -->
+                        <a id="boton-como-llegar-principal" 
+                           href="https://maps.app.goo.gl/DhjuGyGnGQF74pzT9" 
+                           target="_blank" 
+                           class="btn-menu maps-btn" 
+                           style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px; font-weight: bold; background-color: #f80101; color: white; border-radius: 8px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 1px solid var(--brand-accent);"
+                           onclick="playClick()">
+                             <i class="fas fa-location-arrow"></i> CÓMO LLEGAR 
+                        </a>
+                    </div>
+
+                    <!-- Contenedor inyectado por JS -->
+                    <div id="contenedor-sucursales"></div>
+                    
+                    <!-- BOTÓN DE CIERRE FIJO -->
+                    <button onclick="cerrarMenu()" class="btn-cerrar">Cerrar</button>
+                </div>
+            </div>
+
+            <div class="mosaic-item share-block">
+                <button class="btn-magazine-share" onclick="shareExperienceRobust()">
+                    <i class="fas fa-share-alt"></i> Compré en TRAIL-MAQ. ¡Excelente experiencia! Te la comparto.
+                </button>
+            </div>
+            
+            <div class="mosaic-item custom-actions-block">
+                <div class="credits-altpro-compact">
+                    <span class="produced-by">PRODUCIDO POR "PIDE YA" CARD</span>
+                    <a href="https://wa.me/524491472336" target="_blank" class="altpro-link">
+                        <i class="fab fa-whatsapp"></i> 449 147 2336
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="modal-negocios" class="overlay-modal brand-custom-modal" style="display: none;" onclick="closeBrandModal('modal-negocios')">
+        <button class="btn-close-circular" onclick="closeBrandModal('modal-negocios')">×</button>
+        <div class="network-scroll-box" onclick="event.stopPropagation()">
+            <h3 class="network-modal-title"><i class="fas fa-truck-moving"></i> VIVE LA EVOLUCIÓN EN CARROCERÍAS Y REMOLQUES A LA MEDIDA</h3>
+            <p class="network-modal-subtitle">Descubre lo que nos hace diferentes</p>
+            <div class="network-buttons-grid">
+                <button class="btn-network-link" onclick="openNetworkCard('https://www.youtube.com/shorts/ph2y92pgU94')"><i class="fas fa-car-side"></i> EL PODER QUE TU MERECES</button>
+                <button class="btn-network-link" onclick="openNetworkCard('https://www.youtube.com/shorts/afdjMZqkNzM')"><i class="fas fa-charging-station"></i> TECNOLOGÍA E INNOVACIÓN</button>
+                <button class="btn-network-link" onclick="openNetworkCard('https://www.youtube.com/shorts/diPB89riM7c')"><i class="fas fa-tags"></i> ESTE ES TU MOMENTO</button>
+                <button class="btn-network-link" onclick="openNetworkCard('https://www.youtube.com/shorts/G9i3Ji_wdS8')"><i class="fas fa-wrench"></i> TODO LO QUE NECESITAS</button>
+            </div>
+        </div>
+    </div>
+
+    <main id="dynamic-content-layer" class="content-overlay" style="display: none;">
+        <button class="btn-close-circular" onclick="closeAppContent()">×</button>
+        <section class="tab-pane" id="cat1-pane" style="display: none;"><div id="grid-cat1" class="carousel-zigzag-grid"></div></section>
+        <section class="tab-pane" id="cat2-pane" style="display: none;"><div id="grid-cat2" class="carousel-zigzag-grid"></div></section>
+        
+        <!-- APARTADO DE PREGUNTAS FRECUENTES (ADAPTADO A FABRICANTES Y DISTRIBUIDORES DE CARROCERÍAS Y REMOLQUES) -->
+        <section class="tab-pane" id="cat3-pane" style="display: none; padding: 20px; color: #fff; font-family: 'Montserrat', sans-serif;">
+            <h2 class="pane-title" style="text-align: center; margin-bottom: 25px; font-weight: bold; letter-spacing: 1.5px;">PREGUNTAS FRECUENTES</h2>
+            <div style="display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto;">
+                
+                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; border-left: 4px solid var(--brand-accent, #c5a059);">
+                    <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #fff; font-weight: 600;">¿Qué incluye la fabricación o adquisición de una carrocería o remolque?</h4>
+                    <p style="margin: 0; font-size: 0.8rem; color: rgba(255,255,255,0.8); line-height: 1.4;">Cada unidad incluye garantía por escrito en estructura y pintura, kit de herrajes y accesorios iniciales, revisión técnica de entrega y certificación de calidad.</p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; border-left: 4px solid var(--brand-accent, #c5a059);">
+                    <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #fff; font-weight: 600;">¿Dónde se realizan las entregas de las unidades terminadas?</h4>
+                    <p style="margin: 0; font-size: 0.8rem; color: rgba(255,255,255,0.8); line-height: 1.4;">Las entregas se coordinan directamente en nuestra planta de fabricación o mediante traslado especializado a su base de operaciones. Las coordenadas se confirman vía WhatsApp.</p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; border-left: 4px solid var(--brand-accent, #c5a059);">
+                    <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #fff; font-weight: 600;">¿Cuál es la política de cancelación o devolución de apartado?</h4>
+                    <p style="margin: 0; font-size: 0.8rem; color: rgba(255,255,255,0.8); line-height: 1.4;">Ofrecemos reembolso total del depósito de apartado si el plan de financiamiento para flotilla no es autorizado o si se solicita la anulación antes del inicio de corte y diseño.</p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; border-left: 4px solid var(--brand-accent, #c5a059);">
+                    <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #fff; font-weight: 600;">¿Cómo puedo apartar o financiar mi proyecto a la medida?</h4>
+                    <p style="margin: 0; font-size: 0.8rem; color: rgba(255,255,255,0.8); line-height: 1.4;">Puede asegurar su proyecto con un anticipo inicial mediante transferencia y liquidar o activar su esquema de crédito o arrendamiento puro al momento de la entrega final.</p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; border-left: 4px solid var(--brand-accent, #c5a059);">
+                    <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #fff; font-weight: 600;">¿Cuentan con visitas a planta o revisión de prototipos?</h4>
+                    <p style="margin: 0; font-size: 0.8rem; color: rgba(255,255,255,0.8); line-height: 1.4;">¡Afirmativo! Agendamos citas personalizadas para inspección de acabados, revisión de prototipos en planta y asesoría técnica con nuestros especialistas en carrocería.</p>
+                </div>
+
+            </div>
+        </section>
+
+            </div>
+        </section>
+
+        <section class="tab-pane" id="cat4-pane" style="display: none;"> ....
+            <h2 class="pane-title">CONTACTO</h2>
+            <div class="contact-panel-robust">
+                <p class="address-tag"><i class="fas fa-building"></i> ¡Síguenos en nuestras redes y canales oficiales!</p>
+                <div class="social-vertical-stack">
+                    <a id="link-whatsapp-direct" href="https://wa.me/5214491472336?text=Hi,%20I'm%20interested%20in%20booking%20a%20tour%20with%20Maya%20Blue%20Sailing." target="_blank" class="stack-btn" style="background-color: #25d366; color: #fff;"><i class="fab fa-whatsapp"></i> CHATEA POR WHATSAPP</a>
+                    <a id="link-web-chirey" href="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" target="_blank" class="stack-btn fb-color" style="background-color: #002d62;"><i class="fas fa-globe"></i> SITIO WEB OFICIAL</a>
+                    <a id="link-fb-chirey" href="https://www.facebook.com/?locale=es_LA" target="_blank" class="stack-btn fb-color"><i class="fab fa-facebook"></i> FACEBOOK OFICIAL</a>
+                    <a id="link-ig-chirey" href="https://www.instagram.com/my_sing_studio/" target="_blank" class="stack-btn" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: #fff;"><i class="fab fa-instagram"></i> INSTAGRAM</a>
+                </div>
+                <div class="qr-reubicado-container">
+                    <h4 class="qr-section-heading">ESCANEA EL CÓDIGO QR</h4>
+                    <img src="assets/hero/qr.png" alt="QR Local" class="qr-embedded-img">
+                    <a href="assets/hero/qr.png" download="qr.png" class="btn-download-qr-integrated" onclick="playClickSound()">
+                        <i class="fas fa-cloud-download-alt"></i> COMPARTIR QR
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="lightbox" class="overlay-modal" style="display: none;" onclick="closeLightbox()">
+        <button class="btn-close-circular" onclick="closeLightbox()">×</button>
+        <div class="zoom-premium-content" onclick="event.stopPropagation()">
+            <button class="btn-nav-lightbox btn-prev" onclick="changeLightboxImage(-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="zoom-image-wrapper">
+                <img id="lightbox-image" src="" alt="Zoom">
+                <img src="assets/brand/logo.png" class="mini-logo-zoom-overlay">
+            </div>
+            <button class="btn-nav-lightbox btn-next" onclick="changeLightboxImage(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <div id="text-zoom-modal" class="overlay-modal" style="display: none;" onclick="closeTextZoom()">
+        <div class="text-zoom-card" onclick="event.stopPropagation()">
+            <button class="btn-close-circular" style="top:-20px; right:-20px;" onclick="closeTextZoom()">×</button>
+            <div class="card-branding-header" style="display: flex; align-items: center;">
+                <img src="assets/brand/logo.png" class="card-logo" style="width: 40px; margin-right: 10px;">
+                <h3 id="text-zoom-title"></h3>
+            </div>
+            <hr class="gold-divider" style="border: 0; border-top: 1px solid var(--brand-accent); margin: 15px 0;">
+            <div id="text-zoom-content" style="white-space: pre-line;"></div>
+        </div>
+    </div>
+
+    <audio id="spot-intro" src="assets/sounds/spot-intro.mp3" preload="auto" loop></audio>
+    <audio id="sndFxClick" src="assets/sounds/clic.mp3"></audio>
+    
+    <div id="video-lightbox-overlay" class="overlay-modal" style="display:none;" onclick="closeVideoLightbox()">
+        <button class="btn-close-circular" onclick="closeVideoLightbox()">×</button>
+        <div class="zoom-premium-content" onclick="event.stopPropagation()">
+            <div class="zoom-image-wrapper" style="width: 90%; max-width: 600px;">
+                <iframe id="video-lightbox-frame" style="width: 100%; aspect-ratio: 16/9; border: 3px solid var(--brand-accent); border-radius: 10px;" src="" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- MODAL DEL CUESTIONARIO INTELIGENTE (POTENCIA EXTERNA + CONTROL INTERNO) -->
+<div id="cuestionario-modal" class="overlay-modal" style="display: none;" onclick="// Bloqueado click afuera para obligar a responder">
+    <div class="cuestionario-card" onclick="event.stopPropagation()">
+        
+        <!-- Encabezado de Bienvenida -->
+        <div id="cuestionario-header">
+            <div class="card-branding-header" style="display: flex; align-items: center;">
+                <img src="assets/brand/logo.png" class="card-logo" style="width: 40px; margin-right: 10px;">
+                <h3 style="color: var(--brand-accent, #f80101); margin: 0; font-size: 1.2rem;">Asistente Personalizado</h3>
+            </div>
+            <p class="cuestionario-bienvenida">¡Bienvenido/a! Permítenos ayudarte a encontrar al especialista ideal para ti. Solo te tomará unos segundos responder unas breves preguntas.</p>
+            <div class="progress-bar-container">
+                <div id="cuestionario-progress" class="progress-bar" style="width: 10%;"></div>
+            </div>
+            <hr class="gold-divider" style="border: 0; border-top: 1px solid var(--brand-accent, #f80101); margin: 15px 0;">
+        </div>
+
+        <!-- Pasos Dinámicos del Cuestionario -->
+        <div id="cuestionario-body">
+            
+            <!-- PASO 1: Datos Básicos -->
+            <div class="cuestionario-paso" id="paso-1">
+                <h4>PASO 1. Datos básicos del prospecto</h4>
+                <p class="paso-desc">Estos datos permiten dar seguimiento oportuno.</p>
+                <div class="form-group">
+                    <label>Nombre completo *</label>
+                    <input type="text" id="q-nombre" placeholder="Ej. Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp *</label>
+                    <input type="tel" id="q-whatsapp" placeholder="Ej. 4491234567" required>
+                </div>
+                <div class="form-group">
+                    <label>Correo electrónico (opcional)</label>
+                    <input type="email" id="q-correo" placeholder="Ej. juan@correo.com">
+                </div>
+                <div class="form-group">
+                    <label>¿Cómo prefieres que te contactemos?</label>
+                    <div class="opciones-vertical">
+                        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(1, 'contacto', 'WhatsApp')">WhatsApp</button>
+                        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(1, 'contacto', 'Llamada')">Llamada</button>
+                        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(1, 'contacto', 'Correo')">Correo</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASO 2: Carrocería, Caja Seca o Remolque de Interés -->
+<div class="cuestionario-paso" id="paso-2" style="display:none;">
+    <h4>PASO 2. ¿Qué tipo de carrocería, caja seca o remolque te interesa?</h4>
+    <p class="paso-desc">Informa al asesor sobre el diseño, modelo o tipo de unidad requerida para tu flota.</p>
+    <div class="opciones-grid">
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(2, 'modelo', 'Caja Seca (Seca / Carga General)')">Caja Seca (Carga General)</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(2, 'modelo', 'Caja Refrigerada / Termo')">Caja Refrigerada / Termo</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(2, 'modelo', 'Carrocería Redilas / Estacas')">Carrocería Redilas / Estacas</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(2, 'modelo', 'Plataforma / Cama Baja')">Plataforma / Cama Baja</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(2, 'modelo', 'Tolva / Volteo / Especializada')">Tolva / Volteo / Especializada</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(2, 'modelo', 'Remolque / Semi-remolque a la Medida')">Remolque a la Medida / Otro</button>
+    </div>
+    <!-- Botones de navegación integrados -->
+    <div class="cuestionario-footer" style="margin-top: 20px; display: flex; justify-content: space-between;">
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(1)">Siguiente</button>
+    </div>
+</div>
+
+            <!-- PASO 3: Tipo de Operación o Carga de Transporte -->
+<div class="cuestionario-paso" id="paso-3" style="display:none;">
+    <h4>PASO 3. ¿Qué tipo de carga o ruta principal realizarás con la unidad?</h4>
+    <p class="paso-desc">Perfilado inicial de la operación, tipo de trayecto y exigencia logística.</p>
+    <div class="opciones-grid">
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(3, 'tipo', 'Carga Seca General / Paquetería / Secos')">Carga Seca General</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(3, 'tipo', 'Alimentos Perecederos / Cadena de Frío / Termo')">Perecederos / Refrigerados</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(3, 'tipo', 'Transporte Agrícola / Granos / Semillas en Redilas')">Granos / Redilas Agrícolas</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(3, 'tipo', 'Carga Pesada / Materiales de Construcción / Plataforma')">Materiales / Plataforma</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(3, 'tipo', 'Transporte a Granel / Tolvas / Volteo')">Granel / Tolvas / Volteo</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(3, 'tipo', 'Distribución Local / Reparto Urbano / Full')">Distribución Local / Regional</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(3, 'tipo', 'Rutas Federales de Larga Distancia / Expreso')">Larga Distancia / Federal</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(3, 'tipo', 'Otro / Proyecto de Carrocería Especializada')">Otro / Proyecto Especializado</button>
+    </div>
+    <div class="cuestionario-footer" style="margin-top: 20px; display: flex; justify-content: space-between;">
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(1)">Siguiente</button>
+    </div>
+</div>
+
+            <!-- PASO 4: Régimen de Operación y Frecuencia de Ruta -->
+<div class="cuestionario-paso" id="paso-4" style="display:none;">
+    <h4>PASO 4. ¿Cuál será el régimen de operación y frecuencia de las rutas?</h4>
+    <p class="paso-desc">Segmentación de la exigencia operativa, kilometraje y desgaste de la unidad.</p>
+    <div class="opciones-grid">
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(4, 'uso', 'Operación Intensiva / Rutas Federales Diarias (Full / Sencillo)')">Intensiva / Rutas Federales Diarias</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(4, 'uso', 'Distribución Local Continua / Reparto Urbano Diario')">Diaria / Reparto Urbano Local</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(4, 'uso', 'Uso Estacional / Picos de Demanda o Temporada de Cosecha')">Estacional / Picos de Demanda</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(4, 'uso', 'Arrendamiento Temporal / Flotilla de Apoyo para Proyecto')">Renta / Flotilla Temporal</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(4, 'uso', 'Uso Intermitente / Rutas Regionales Espaciadas')">Intermitente / Rutas Regionales</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(4, 'uso', 'Expansión de Flotilla para Empresa de Transporte / Logística')">Flotilla / Empresa de Transporte</button>
+    </div>
+    <div class="cuestionario-footer" style="margin-top: 20px; display: flex; justify-content: space-between;">
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(1)">Siguiente</button>
+    </div>
+</div>
+
+            <!-- PASO 5: Temporalidad -->
+<div class="cuestionario-paso" id="paso-5" style="display:none;">
+    <h4>PASO 5. ¿Cuándo planeas comprar?</h4>
+    <p class="paso-desc">Esta métrica de urgencia es oro para la gerencia.</p>
+    <div class="opciones-vertical">
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(5, 'tiempo', 'Esta semana'); guardarDatoPaso(5, 'prioridad', 'verde')">Esta semana</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(5, 'tiempo', 'Este mes'); guardarDatoPaso(5, 'prioridad', 'verde')">Este mes</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(5, 'tiempo', 'Dentro de 3 meses'); guardarDatoPaso(5, 'prioridad', 'amarillo')">Dentro de 3 meses</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(5, 'tiempo', 'Dentro de 6 meses'); guardarDatoPaso(5, 'prioridad', 'rojo')">Dentro de 6 meses</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(5, 'tiempo', 'Solo estoy investigando'); guardarDatoPaso(5, 'prioridad', 'rojo')">Solo estoy investigando</button>
+    </div>
+    <!-- Botones de navegación integrados -->
+    <div class="cuestionario-footer" style="margin-top: 20px; display: flex; justify-content: space-between;">
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(1)">Siguiente</button>
+    </div>
+</div>
+
+            <!-- PASO 6: Método de adquisición y financiamiento -->
+<div class="cuestionario-paso" id="paso-6" style="display:none;">
+    <h4>PASO 6. ¿Qué esquema financiero o de adquisición requieres?</h4>
+    <p class="paso-desc">Perfilado del esquema corporativo y financiero para la inversión de tu unidad.</p>
+    <div class="opciones-vertical">
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Crédito Automotriz / Bancario para Flotilla')">Crédito Bancario / Flotilla</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Arrendamiento Puro / Leasing (Deducible)')">Arrendamiento Puro (Leasing)</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Arrendamiento Financiero')">Arrendamiento Financiero</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Pago de Contado / Recursos Propios')">Contado / Recursos Propios</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Requiere Asesoría Financiera / Corridas')">Requiere Asesoría y Corridas</button>
+    </div>
+    <!-- Botones de navegación integrados -->
+    <div class="cuestionario-footer" style="margin-top: 20px; display: flex; justify-content: space-between;">
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(1)">Siguiente</button>
+    </div>
+</div>
+
+            <!-- PASO 7: Presupuesto o Rango de Inversión en Carrocerías / Remolques -->
+<div class="cuestionario-paso" id="paso-7" style="display:none;">
+    <h4>PASO 7. ¿Cuál es tu rango de inversión aproximado por carrocería, caja o remolque?</h4>
+    <p class="paso-desc">Clasificación del capital o capacidad de enganche/inversión (MXN).</p>
+    <div class="opciones-vertical">
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(7, 'presupuesto', 'Menos de $250K MXN (Carrocerías Ligeras / Redilas Cortas)')">Menos de $250K MXN (Carrocerías Ligeras)</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(7, 'presupuesto', '$250K a $600K MXN (Cajas Secas / Redilas de 3.5 Ton a Torton)')">$250K a $600K MXN (Cajas Secas / Torton)</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(7, 'presupuesto', '$600K a $1.2 MDP (Remolques / Semirremolques / Termos)')">$600K a $1.2 MDP (Remolques / Termos)</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(7, 'presupuesto', 'Más de $1.2 MDP (Fulles / Tolvas Especializadas / Alta Gama)')">Más de $1.2 MDP (Fulles / Especializadas)</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(7, 'presupuesto', 'Cotización por Paquete de Flotilla / Empresa de Transporte')">Paquete de Flotilla / Empresa</button>
+    </div>
+    <!-- Botones de navegación integrados -->
+    <div class="cuestionario-footer" style="margin-top: 20px; display: flex; justify-content: space-between;">
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(1)">Siguiente</button>
+    </div>
+</div>
+
+            <!-- PASO 8: Promoción o incentivo comercial de interés -->
+<div class="cuestionario-paso" id="paso-8" style="display:none;">
+    <h4>PASO 8. ¿Qué incentivo comercial o programa te interesa aplicar?</h4>
+    <p class="paso-desc">Mide directamente la efectividad de las campañas y bonos vigentes para carrocerías y paquetes de flotilla.</p>
+    <div class="opciones-vertical">
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(8, 'promocion', 'Paquete de Flotilla / Descuento por Volumen de Unidades')">Paquete de Flotilla / Descuento por Volumen</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(8, 'promocion', 'Tasa Preferencial / Financiamiento Especial para Transporte')">Tasa Preferencial / Crédito de Unidades</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(8, 'promocion', 'Kit de Herrajes y Accesorios Extra Gratis para Carrocería')">Kit de Accesorios / Herrajes Gratis</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(8, 'promocion', 'Garantía extendida en Estructura y Pintura de la Caja')">Garantía Extendida Estructura y Pintura</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(8, 'promocion', 'Diseño y Muestra de Prototipo a la Medida')">Diseño y Muestra de Prototipo a la Medida</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(8, 'promocion', 'Ninguno / Cotización Estándar')">Ninguno / Cotización Estándar</button>
+    </div>
+    <!-- Botones de navegación integrados -->
+    <div class="cuestionario-footer" style="margin-top: 20px; display: flex; justify-content: space-between;">
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
+        <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(1)">Siguiente</button>
+    </div>
+</div>
+
+            <!-- PASO 9: Canal de origen y Auditoría ROI -->
+<div class="cuestionario-paso" id="paso-9" style="display:none;">
+    <h4>PASO 9. ¿Cómo conociste nuestra FABRICA / DISTRIBUIDORA DE CARROCERÍAS Y REMOLQUES?</h4>
+    <p class="paso-desc">Auditoría pura de Retorno de Inversión (ROI) para proyectos de transporte y flotillas.</p>
+    <div class="opciones-grid">
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Mi asesor comercial')">Mi asesor comercial</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Recomendación / Colega Transportista')">Recomendación / Colega</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Facebook / Redes Sociales')">Facebook / Redes Sociales</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Expo / Feria del Transporte o Logística')">Expo / Feria del Transporte</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'WhatsApp / Mensajería')">WhatsApp / Mensajería</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Búsqueda en Google')">Búsqueda en Google</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Sitio Web Oficial')">Sitio Web Oficial</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Código QR / Planta o Sucursal')">Código QR / Planta</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Otro medio')">Otro medio</button>
+    </div>
+    
+    <div class="cuestionario-footer" style="margin-top: 20px; display: flex; justify-content: space-between;">
+        <button type="button" id="btn-q-prev" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
+        <button type="button" id="btn-q-next" class="btn-q-nav" onclick="cambiarPasoCuestionario(1)">Siguiente</button>
+    </div>
+</div>
+
+<div class="cuestionario-paso" id="paso-10" style="display:none;">
+    <h4>PASO 10. Selecciona a tu asesor</h4>
+    <div style="margin-top: 20px; padding: 15px; border-top: 2px solid #f80101;">
+        <p>Para brindarte una atención personalizada, elige a tu asesor de confianza:</p>
+        <select id="asesor-selector" style="width: 100%; padding: 10px; margin-top: 10px;">
+            <option value="ASESOR 1">ASESOR 1</option>
+            <option value="ASESOR 2">ASESOR 2</option>
+            <option value="ASESOR 3">ASESOR 3</option>
+            <option value="ASESOR 4">ASESOR 4</option>
+            <option value="ASESOR 5">ASESOR 5</option>
+            <option value="ASESOR 6">ASESOR 6</option>
+        </select>
+    </div>
+    <div style="margin-top: 20px;">
+        <button style="width: 100%; padding: 15px; background-color: #f80101; color: white; border: none; cursor: pointer;" onclick="finalizarCuestionarioYMostrarAsesores()">FINALIZAR Y ENVIAR</button>
+    </div>
+    <div class="cuestionario-footer" style="margin-top: 20px;">
+        <button id="btn-q-prev" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
+    </div>
+</div>
