@@ -18,7 +18,7 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
-    <title>TRAIL-MAQ | CONECTA CARD</title>
+    <title>TRAIL-MAQ | MAS VENTA</title>
     
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -38,9 +38,9 @@
 
         <div class="mosaic-grid">
             <div class="mosaic-item hero-block" onclick="openProfileZoom()">
-                <img id="profile-pic-img" src="assets/hero/main-photo.jpg" alt="POWER CONSTRUCTION">
+                <img id="profile-pic-img" src="assets/hero/main-photo.jpg" alt="TRAIL-MAQ">
                 <div class="hero-overlay">
-                    <span class="edition-label">FABRICANTES DE CARROCERIAS</span>
+                    <span class="edition-label">BIENVENIDOS</span>
                     <h2 class="hero-title">TRAIL-MAQ</h2>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                         <span class="num">03</span> ASISTENTE RAPIDO Y DUDAS
                     </button>
                     <button class="mag-btn" onclick="showAppContent('cat4')">
-                        <span class="num">04</span> WHATSAPP Y REDES SOCIALES
+                        <span class="num">04</span> WHATSAPP Y REDES SOCIALES  
                     </button>
                 </div>
             </div>
@@ -79,8 +79,57 @@
 
             <div class="mosaic-item lead-block">
                 <button type="button" onclick="abrirCuestionario()" class="btn-shiny-gold shine-effect">
-                    <i class="fas fa-truck-moving" style="margin-right: 8px;"></i> ¡ELIGE A TU ASESOR EN CARROCERÍAS, CAJAS SECAS Y REMOLQUES / MAPS!
+                    <i class="fas fa-car-side" style="margin-right: 8px;"></i> ¡ELIGE A TU ASESOR ESPECIALIZADO / MAPS!
                 </button>
+            </div>
+
+            <!-- NUEVO BOTÓN INDEPENDIENTE: VALORA LA ATENCIÓN -->
+            <div class="mosaic-item lead-block" style="margin-top: 8px;">
+                <button type="button" onclick="abrirMenuReseñas()" class="btn-shiny-gold shine-effect" style="background: linear-gradient(135deg, #f80101 0%, #b30000 100%); color: #fff;">
+                    <i class="fas fa-star" style="margin-right: 8px;"></i> ⭐ VALORA LA ATENCIÓN DE TU ASESOR
+                </button>
+            </div>
+
+            <!-- MENÚ DE CONTACTO - SE GENERA DINÁMICAMENTE POR SCRIPT -->
+            <div id="miMenuContacto" class="menu-oculto" onclick="cerrarMenu()">
+                <div class="menu-contenido" onclick="event.stopPropagation()">
+                    <div class="bloque-mapa-guia" style="text-align: center; padding: 5px 0 15px 0; width: 100%;">
+                        <h3 style="font-size: 0.95rem; font-weight: bold; color: #fff; text-transform: uppercase; margin-bottom: 4px; font-family: 'Montserrat', sans-serif;">Contacta a tu Asesor Digital</h3>
+                        <p style="font-size: 0.7rem; color: rgba(255,255,255,0.7); margin-bottom: 12px; font-family: 'Montserrat', sans-serif; padding: 0 10px;">Elige al asesor de tu preferencia para recibir atención inmediata / Da clic a su nombre.</p>
+                        
+                        <!-- CÓMO LLEGAR DIRECTO -->
+                        <a id="boton-como-llegar-principal" 
+                           href="https://maps.app.goo.gl/DhjuGyGnGQF74pzT9" 
+                           target="_blank" 
+                           class="btn-menu maps-btn" 
+                           style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px; font-weight: bold; background-color: #f80101; color: white; border-radius: 8px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 1px solid var(--brand-accent);"
+                           onclick="playClick()">
+                           <i class="fas fa-location-arrow"></i> CÓMO LLEGAR 
+                        </a>
+                    </div>
+
+                    <!-- Contenedor inyectado por JS -->
+                    <div id="contenedor-sucursales"></div>
+                    
+                    <!-- BOTÓN DE CIERRE FIJO -->
+                    <button onclick="cerrarMenu()" class="btn-cerrar">Cerrar</button>
+                </div>
+            </div>
+
+            <!-- NUEVO MENÚ OCULTO PARA RESEÑAS / FEEDBACK CONFIDENCIAL -->
+            <div id="miMenuReseñas" class="menu-oculto" onclick="cerrarMenuReseñas()">
+                <div class="menu-contenido" onclick="event.stopPropagation()">
+                    <div class="bloque-mapa-guia" style="text-align: center; padding: 5px 0 15px 0; width: 100%;">
+                        <h3 style="font-size: 0.95rem; font-weight: bold; color: #fff; text-transform: uppercase; margin-bottom: 4px; font-family: 'Montserrat', sans-serif;">Evaluación de Servicio (Confidencial)</h3>
+                        <p style="font-size: 0.7rem; color: rgba(255,255,255,0.7); margin-bottom: 12px; font-family: 'Montserrat', sans-serif; padding: 0 10px;">Elige a tu asesor para enviar tu calificación directamente a la Gerencia de Ventas.</p>
+                    </div>
+
+                    <!-- Contenedor inyectado por JS para las reseñas -->
+                    <div id="contenedor-reseñas-asesores" style="width: 100%; display: flex; flex-direction: column; gap: 8px;"></div>
+                    
+                    <!-- BOTÓN DE CIERRE FIJO -->
+                    <button onclick="cerrarMenuReseñas()" class="btn-cerrar" style="margin-top: 15px;">Cerrar</button>
+                </div>
             </div>
 
             <!-- MENÚ DE CONTACTO - SE GENERA DINÁMICAMENTE POR SCRIPT -->
@@ -129,7 +178,7 @@
     <div id="modal-negocios" class="overlay-modal brand-custom-modal" style="display: none;" onclick="closeBrandModal('modal-negocios')">
         <button class="btn-close-circular" onclick="closeBrandModal('modal-negocios')">×</button>
         <div class="network-scroll-box" onclick="event.stopPropagation()">
-            <h3 class="network-modal-title"><i class="fas fa-truck-moving"></i> VIVE LA EVOLUCIÓN EN CARROCERÍAS Y REMOLQUES A LA MEDIDA</h3>
+            <h3 class="network-modal-title"><i class="fas fa-car"></i> VIVE LA EVOLUCIÓN</h3>
             <p class="network-modal-subtitle">Descubre lo que nos hace diferentes</p>
             <div class="network-buttons-grid">
                 <button class="btn-network-link" onclick="openNetworkCard('https://www.youtube.com/shorts/ph2y92pgU94')"><i class="fas fa-car-side"></i> EL PODER QUE TU MERECES</button>
@@ -145,7 +194,7 @@
         <section class="tab-pane" id="cat1-pane" style="display: none;"><div id="grid-cat1" class="carousel-zigzag-grid"></div></section>
         <section class="tab-pane" id="cat2-pane" style="display: none;"><div id="grid-cat2" class="carousel-zigzag-grid"></div></section>
         
-        <!-- APARTADO DE PREGUNTAS FRECUENTES (ADAPTADO A FABRICANTES Y DISTRIBUIDORES DE CARROCERÍAS Y REMOLQUES) -->
+        <!-- APARTADO DE PREGUNTAS FRECUENTES (ADAPTADO A CONCESIONARIA DE AUTOS) -->
         <section class="tab-pane" id="cat3-pane" style="display: none; padding: 20px; color: #fff; font-family: 'Montserrat', sans-serif;">
             <h2 class="pane-title" style="text-align: center; margin-bottom: 25px; font-weight: bold; letter-spacing: 1.5px;">PREGUNTAS FRECUENTES</h2>
             <div style="display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto;">
@@ -178,15 +227,12 @@
             </div>
         </section>
 
-            </div>
-        </section>
-
         <section class="tab-pane" id="cat4-pane" style="display: none;"> ....
             <h2 class="pane-title">CONTACTO</h2>
             <div class="contact-panel-robust">
                 <p class="address-tag"><i class="fas fa-building"></i> ¡Síguenos en nuestras redes y canales oficiales!</p>
                 <div class="social-vertical-stack">
-                    <a id="link-whatsapp-direct" href="https://wa.me/5214491472336?text=Hi,%20I'm%20interested%20in%20booking%20a%20tour%20with%20Maya%20Blue%20Sailing." target="_blank" class="stack-btn" style="background-color: #25d366; color: #fff;"><i class="fab fa-whatsapp"></i> CHATEA POR WHATSAPP</a>
+                    <a id="link-whatsapp-direct" href="https://wa.me/5214491472336?text=Hi,%20I'm%20interested%20in%20booking%20a%20tour%20with%20Maya%20Blue%20Sailing." target="_blank" class="stack-btn" style="background-color: #25d366; color: #fff;"><i class="fab fa-whatsapp"></i> CHAT ON WHATSAPP</a>
                     <a id="link-web-chirey" href="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" target="_blank" class="stack-btn fb-color" style="background-color: #002d62;"><i class="fas fa-globe"></i> SITIO WEB OFICIAL</a>
                     <a id="link-fb-chirey" href="https://www.facebook.com/?locale=es_LA" target="_blank" class="stack-btn fb-color"><i class="fab fa-facebook"></i> FACEBOOK OFICIAL</a>
                     <a id="link-ig-chirey" href="https://www.instagram.com/my_sing_studio/" target="_blank" class="stack-btn" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: #fff;"><i class="fab fa-instagram"></i> INSTAGRAM</a>
@@ -335,6 +381,7 @@
         <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(4, 'uso', 'Arrendamiento Temporal / Flotilla de Apoyo para Proyecto')">Renta / Flotilla Temporal</button>
         <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(4, 'uso', 'Uso Intermitente / Rutas Regionales Espaciadas')">Intermitente / Rutas Regionales</button>
         <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(4, 'uso', 'Expansión de Flotilla para Empresa de Transporte / Logística')">Flotilla / Empresa de Transporte</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(4, 'uso', 'Otro')">Otro</button>
     </div>
     <div class="cuestionario-footer" style="margin-top: 20px; display: flex; justify-content: space-between;">
         <button type="button" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
@@ -360,16 +407,15 @@
     </div>
 </div>
 
-            <!-- PASO 6: Método de adquisición y financiamiento -->
+            <!-- PASO 6: Método de adquisición -->
 <div class="cuestionario-paso" id="paso-6" style="display:none;">
-    <h4>PASO 6. ¿Qué esquema financiero o de adquisición requieres?</h4>
-    <p class="paso-desc">Perfilado del esquema corporativo y financiero para la inversión de tu unidad.</p>
+    <h4>PASO 6. ¿Cómo piensas adquirirlo?</h4>
+    <p class="paso-desc">Perfilado del esquema financiero.</p>
     <div class="opciones-vertical">
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Crédito Automotriz / Bancario para Flotilla')">Crédito Bancario / Flotilla</button>
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Arrendamiento Puro / Leasing (Deducible)')">Arrendamiento Puro (Leasing)</button>
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Arrendamiento Financiero')">Arrendamiento Financiero</button>
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Pago de Contado / Recursos Propios')">Contado / Recursos Propios</button>
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Requiere Asesoría Financiera / Corridas')">Requiere Asesoría y Corridas</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Contado')">Contado</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Crédito')">Crédito</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Arrendamiento')">Arrendamiento</button>
+        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(6, 'metodo', 'Aún no lo sé')">Aún no lo sé</button>
     </div>
     <!-- Botones de navegación integrados -->
     <div class="cuestionario-footer" style="margin-top: 20px; display: flex; justify-content: space-between;">
@@ -415,33 +461,37 @@
     </div>
 </div>
 
-            <!-- PASO 9: Canal de origen y Auditoría ROI -->
-<div class="cuestionario-paso" id="paso-9" style="display:none;">
-    <h4>PASO 9. ¿Cómo conociste nuestra FABRICA / DISTRIBUIDORA DE CARROCERÍAS Y REMOLQUES?</h4>
-    <p class="paso-desc">Auditoría pura de Retorno de Inversión (ROI) para proyectos de transporte y flotillas.</p>
+            <!-- PASO 9: Canal de origen y Selección de Asesor -->
+<<div class="cuestionario-paso" id="paso-9" style="display:none;">
+    <h4>PASO 9. ¿Cómo conociste nuestra AGENCIA?</h4>
+    <p>Auditoría pura de Retorno de Inversión (ROI) en publicidad.</p>
     <div class="opciones-grid">
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Mi asesor comercial')">Mi asesor comercial</button>
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Recomendación / Colega Transportista')">Recomendación / Colega</button>
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Facebook / Redes Sociales')">Facebook / Redes Sociales</button>
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Expo / Feria del Transporte o Logística')">Expo / Feria del Transporte</button>
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'WhatsApp / Mensajería')">WhatsApp / Mensajería</button>
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Búsqueda en Google')">Búsqueda en Google</button>
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Sitio Web Oficial')">Sitio Web Oficial</button>
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Código QR / Planta o Sucursal')">Código QR / Planta</button>
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Otro medio')">Otro medio</button>
+        <button class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Mi asesor')">Mi asesor</button>
+        <button class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Un amigo')">Un amigo</button>
+        <button class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Facebook')">Facebook</button>
+        <button class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Instagram')">Instagram</button>
+        <button class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'WhatsApp')">WhatsApp</button>
+        <button class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Google')">Google</button>
+        <button class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Sitio web')">Sitio web</button>
+        <button class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Código QR')">Código QR</button>
+        <button class="btn-opcion-q" onclick="guardarDatoPaso(9, 'origen', 'Otro')">Otro</button>
     </div>
     
     <div class="cuestionario-footer" style="margin-top: 20px; display: flex; justify-content: space-between;">
-        <button type="button" id="btn-q-prev" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
-        <button type="button" id="btn-q-next" class="btn-q-nav" onclick="cambiarPasoCuestionario(1)">Siguiente</button>
+        <button id="btn-q-prev" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
+        <button id="btn-q-next" class="btn-q-nav" onclick="cambiarPasoCuestionario(1)">Siguiente</button>
     </div>
 </div>
 
 <div class="cuestionario-paso" id="paso-10" style="display:none;">
-    <h4>PASO 10. Selecciona a tu asesor</h4>
+    <h4>PASO 10. Asesor Sugerido</h4>
     <div style="margin-top: 20px; padding: 15px; border-top: 2px solid #f80101;">
-        <p>Para brindarte una atención personalizada, elige a tu asesor de confianza:</p>
-        <select id="asesor-selector" style="width: 100%; padding: 10px; margin-top: 10px;">
+        <p>Con la información que nos diste, te sugerimos al asesor da clic en su pestaña:</p>
+        <!-- Esta parte mostrará el nombre del asesor que el sistema elija -->
+        <h3 id="texto-asesor-sugerido" style="color: #f80101; text-align: center; margin: 10px 0;">ASESOR 1</h3>
+        
+        <p style="font-size: 14px; margin-top: 15px;">Pero si prefieres, puedes cambiarlo aquí:</p>
+        <select id="asesor-selector" style="width: 100%; padding: 10px; margin-top: 10px; background: #333; color: white; border: 1px solid #555;">
             <option value="ASESOR 1">ASESOR 1</option>
             <option value="ASESOR 2">ASESOR 2</option>
             <option value="ASESOR 3">ASESOR 3</option>
@@ -451,9 +501,9 @@
         </select>
     </div>
     <div style="margin-top: 20px;">
-        <button style="width: 100%; padding: 15px; background-color: #f80101; color: white; border: none; cursor: pointer;" onclick="finalizarCuestionarioYMostrarAsesores()">FINALIZAR Y ENVIAR</button>
+        <button style="width: 100%; padding: 15px; background-color: #f80101; color: white; border: none; cursor: pointer; font-weight: bold;" onclick="finalizarCuestionarioYMostrarAsesores()">FINALIZAR Y ENVIAR</button>
     </div>
     <div class="cuestionario-footer" style="margin-top: 20px;">
-        <button id="btn-q-prev" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
+        <button id="btn-q-prev" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)" style="background: none; border: 1px solid #555; color: white; padding: 10px; cursor: pointer;">Anterior</button>
     </div>
 </div>

@@ -1,10 +1,10 @@
 /**
- * TRAIL-MAQ CONTROL - Motor de Auditoría y Semáforo de Maduración
- * Cliente: TRAIL-MAQ (Carrocerías, Cajas Secas y Remolques)
+ * masventa CONTROL - Motor de Auditoría y Semáforo de Maduración
+ * Cliente: Demo Agencia de Autos Genérica
  */
 
 const CLAVE_GERENCIAL_ACCESO = "TRAILMAQ2026"; 
-const ASESORES_AGENCIA = ["Asesor Cajas Secas", "Asesor Cajas Refrigeradas", "Asesor Plataformas", "Asesor Tolvas y Volteos", "Asesor Financiamiento", "Asesor Paquetes de Flotillas"];
+const ASESORES_AGENCIA = ["Asesor 1", "Asesor 2", "Asesor 3", "Asesor 4", "Asesor 5", "Asesor 6"];
 
 function verificarAccesoGerente() {
     const inputClave = document.getElementById('pass-input').value;
@@ -12,6 +12,7 @@ function verificarAccesoGerente() {
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('panel-gerente').style.display = 'block';
         cargarYProcesarAuditoria();
+        cargarRécordAsesores(); // <--- Aquí se activa la lectura de los asesores automáticamente
     } else {
         alert("Clave gerencial incorrecta. Acceso denegado.");
     }
@@ -32,14 +33,13 @@ function cargarYProcesarAuditoria() {
     let verdes = 0; let amarillos = 0; let rojos = 0;
     
     if (total === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#555; padding: 20px;">No hay registros de transportistas todavía.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#555; padding: 20px;">No hay registros de prospectos todavía.</td></tr>`;
         actualizarIndicadoresKPI(0, 0, 0, 0);
         return;
     }
     
     registros.forEach((prospecto) => {
-        // Lógica de Semáforo basada en el dato 'prioridad' guardado desde el Paso 5
-        let prioridad = prospecto.prioridad || "rojo"; // Por defecto rojo si no se encuentra
+        let prioridad = prospecto.prioridad || "rojo"; 
         let claseBadge = ""; let textoSemaforo = "";
 
         if (prioridad === 'verde') { 
@@ -77,6 +77,32 @@ function cargarYProcesarAuditoria() {
     actualizarIndicadoresKPI(total, verdes, amarillos, rojos);
 }
 
+// Nueva función para llenar la tabla de los asesores
+function cargarRécordAsesores() {
+    const tbodyAsesores = document.getElementById('tabla-asesores-body');
+    if (!tbodyAsesores) return;
+    
+    tbodyAsesores.innerHTML = '';
+    const key = 'AUDITORIA_COMPARTIDOS_ASESORES';
+    let datosAsesores = JSON.parse(localStorage.getItem(key)) || {};
+    
+    let asesoresLista = ["Asesor 1", "Asesor 2", "Asesor 3", "Asesor 4", "Asesor 5", "Asesor 6"];
+    
+    asesoresLista.forEach((nombreAsesor) => {
+        let total = 0;
+        if (datosAsesores[nombreAsesor] && datosAsesores[nombreAsesor].totalCompartidos) {
+            total = datosAsesores[nombreAsesor].totalCompartidos;
+        }
+        
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+            <td style="font-weight:bold; color:#00f0ff;">${nombreAsesor}</td>
+            <td><span style="font-size: 16px; font-weight: bold; color: #00c851;">${total} envíos</span></td>
+        `;
+        tbodyAsesores.appendChild(fila);
+    });
+}
+
 function actualizarIndicadoresKPI(t, v, a, r) {
     document.getElementById('kpi-total').innerText = t;
     document.getElementById('kpi-verde').innerText = v;
@@ -89,7 +115,7 @@ function exportarAExcel() {
     if (registros.length === 0) { alert("No hay datos para exportar."); return; }
     
     let csvContent = "data:text/csv;charset=utf-8,\uFEFF"; 
-    csvContent += "Fecha,Transportista,WhatsApp,Carroceria / Remolque Interes,Operacion Ruta,Prioridad,Asesor Asignado\n";
+    csvContent += "Fecha,Prospecto,WhatsApp,Modelo Interes,Uso Destinado,Prioridad,Asesor Asignado\n";
     
     registros.forEach((p) => {
         csvContent += `"${p.fecha_registro || ''}","${p.nombre || ''}","${p.whatsapp || ''}","${p.modelo || ''}","${p.uso || ''}","${p.prioridad || ''}","${p.asesor || ''}"\n`;
@@ -98,7 +124,7 @@ function exportarAExcel() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "Reporte_Leads_Trail_Maq.csv");
+    link.setAttribute("download", "Reporte_Leads_Agencia_Autos.csv");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -107,6 +133,7 @@ function exportarAExcel() {
 function limpiarPanelGerencial() {
     if (confirm("¿Estás seguro de vaciar el panel de auditoría por completo?")) {
         localStorage.removeItem('AUDITORIA_GERENCIAL_CARD');
+        localStorage.removeItem('AUDITORIA_COMPARTIDOS_ASESORES');
         alert("Panel vaciado correctamente.");
         location.reload();
     }

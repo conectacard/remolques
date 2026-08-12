@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <h2 style="text-align: left; font-size: 18px; margin-bottom: 15px;">Estatus de Maduración del Transportista</h2>
+            <h2 style="text-align: left; font-size: 18px; margin-bottom: 15px;">Estatus de Maduración del Cliente</h2>
 
             <!-- BARRA DE ACCIONES CON BOTONES NUEVOS -->
             <div class="action-bar">
@@ -104,15 +104,31 @@
                         <tr>
                             <th>SEMÁFORO</th>
                             <th>FECHA</th>
-                            <th>PROSP. / TRANSPORTISTA</th>
+                            <th>PROSPECTO</th>
                             <th>WHATSAPP</th>
-                            <th>CARROCERÍA / REMOLQUE INTERÉS</th>
-                            <th>OPERACIÓN / RUTA</th>
+                            <th>MODELO INTERÉS</th>
+                            <th>USO DESTINADO</th>
                             <th>ASESOR ASIGNADO</th>
                         </tr>
                     </thead>
                     <tbody id="tabla-prospectos-body">
                         <!-- Los registros de tu CARD se acomodarán aquí de forma automática -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- RÉCORD DE COMPARTIDOS DE ASESORES -->
+            <h2 style="text-align: left; font-size: 18px; margin: 30px 0 15px 0;">Récord de Envíos de Enlace por Asesor</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ASESOR</th>
+                            <th>TOTAL DE ENVÍOS / COMPARTIDOS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-asesores-body">
+                        <!-- Aquí aparecerán los puntos de cada asesor -->
                     </tbody>
                 </table>
             </div>

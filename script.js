@@ -17,17 +17,17 @@ const CONFIG = {
     maps: "https://maps.app.goo.gl/MiznKcbPu7fBTdzS9", 
     youtubeUrl: "https://www.youtube.com/watch?v=3o_oVnJ0ClE",
     textos: {
-       cat1: { t: "QUIÉNES SOMOS", c: "CARROCERÍAS Y REMOLQUES A LA MEDIDA redefine la durabilidad y la ingeniería en el transporte de carga, ofreciendo cajas secas, refrigeradas, plataformas y remolques fabricados con altos estándares de calidad, diseño personalizado y un respaldo postventa total que garantiza la rentabilidad y seguridad de cada ruta." },
-cat2: { t: "EXCELENCIA", c: "Explora nuestra gama de soluciones integrales: Fabricación de carrocerías y cajas secas, remolques y semirremolques a la medida, planes de financiamiento y arrendamiento puro para flotillas, diseño de prototipos especializados, taller de mantenimiento y venta de refacciones y herrajes originales." },
-cat3: { t: "CLIENTES FELICES", c: "Nuestra prioridad es mantener tus unidades operando al máximo rendimiento en cada trayecto. Transportistas, empresas de logística y flotas de la región respaldan la resistencia, el diseño personalizado y el soporte operativo excepcional que solo CARROCERÍAS Y REMOLQUES A LA MEDIDA puede ofrecer." }
+        cat1: { t: "QUIÉNES SOMOS", c: "CARROCERÍAS Y REMOLQUES A LA MEDIDA redefine la durabilidad y la ingeniería en el transporte de carga, ofreciendo cajas secas, refrigeradas, plataformas y remolques fabricados con altos estándares de calidad, diseño personalizado y un respaldo postventa total que garantiza la rentabilidad y seguridad de cada ruta." },
+        cat2: { t: "EXCELENCIA", c: "Explora nuestra gama de soluciones integrales: Fabricación de carrocerías y cajas secas, remolques y semirremolques a la medida, planes de financiamiento y arrendamiento puro para flotillas, diseño de prototipos especializados, taller de mantenimiento y venta de refacciones y herrajes originales." },
+        cat3: { t: "CLIENTES FELICES", c: "Nuestra prioridad es mantener tus unidades operando al máximo rendimiento en cada trayecto. Transportistas, empresas de logística y flotas de la región respaldan la resistencia, el diseño personalizado y el soporte operativo excepcional que solo CARROCERÍAS Y REMOLQUES A LA MEDIDA puede ofrecer." }
     },
     sucursales: {
-        suc1: { nombre: "Asesor 1", wa: "5214491472336", maps: "https://maps.app.goo.gl/RCnMaFC6yBCkqHjv9", esp: "Especialista en Cajas Secas y Carga General", img: "assets/brand/ASESOR1.jpg" },
-        suc2: { nombre: "Asesor 2", wa: "5214491472336", maps: "https://maps.app.goo.gl/RCnMaFC6yBCkqHjv9", esp: "Especialista en Cajas Refrigeradas y Termos", img: "assets/brand/ASESOR2.jpg" },
-        suc3: { nombre: "Asesor 3", wa: "5214491472336", maps: "https://maps.app.goo.gl/RCnMaFC6yBCkqHjv9", esp: "Especialista en Plataformas y Cama Baja", img: "assets/brand/ASESOR3.jpg" },
-        suc4: { nombre: "Asesor 4", wa: "5214491472336", maps: "https://maps.app.goo.gl/RCnMaFC6yBCkqHjv9", esp: "Especialista en Tolvas, Volteos y Redilas", img: "assets/brand/ASESOR4.jpg" },
-        suc5: { nombre: "Asesor 5", wa: "5214491472336", maps: "https://maps.app.goo.gl/RCnMaFC6yBCkqHjv9", esp: "Especialista en Financiamiento y Arrendamiento", img: "assets/brand/ASESOR5.jpg" },
-        suc6: { nombre: "Asesor 6", wa: "5214491472336", maps: "https://maps.app.goo.gl/RCnMaFC6yBCkqHjv9", esp: "Especialista en Paquetes de Flotillas y Proyectos", img: "assets/brand/ASESOR6.jpg" }
+        suc1: { nombre: "Asesor 1", wa: "5214491472336", maps: "https://maps.app.goo.gl/RCnMaFC6yBCkqHjv9", esp: "Especialista en SUVs", img: "assets/brand/ASESOR1.jpg" },
+        suc2: { nombre: "Asesor 2", wa: "5214491472336", maps: "https://maps.app.goo.gl/RCnMaFC6yBCkqHjv9", esp: "Especialista en Sedanes", img: "assets/brand/ASESOR2.jpg" },
+        suc3: { nombre: "Asesor 3", wa: "5214491472336", maps: "https://maps.app.goo.gl/RCnMaFC6yBCkqHjv9", esp: "Especialista en Vehículos Eléctricos", img: "assets/brand/ASESOR3.jpg" },
+        suc4: { nombre: "Asesor 4", wa: "5214491472336", maps: "https://maps.app.goo.gl/RCnMaFC6yBCkqHjv9", esp: "Especialista en Financiamiento", img: "assets/brand/ASESOR4.jpg" },
+        suc5: { nombre: "Asesor 5", wa: "5214491472336", maps: "https://maps.app.goo.gl/RCnMaFC6yBCkqHjv9", esp: "Especialista en Vehículos Deportivos", img: "assets/brand/ASESOR5.jpg" },
+        suc6: { nombre: "Asesor 6", wa: "5214491472336", maps: "https://maps.app.goo.gl/RCnMaFC6yBCkqHjv9", esp: "Especialista en Seminuevos Certificados", img: "assets/brand/ASESOR6.jpg" }
     }
 };
 
@@ -292,8 +292,33 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function shareExperienceRobust() {
-    try { await navigator.share({ title: 'BMW Euromotors de Aguascalientes', url: window.location.href }); }
-    catch { playClick(); navigator.clipboard.writeText(window.location.href).then(() => { alert("¡Enlace de tarjeta copiado!"); }); }
+    // 1. Suma el punto al asesor que corresponda en la memoria
+    try {
+        const idAsesor = new URLSearchParams(window.location.search).get('asesor');
+        if (idAsesor) {
+            const claveMemoria = 'AUDITORIA_COMPARTIDOS_ASESORES';
+            let datos = JSON.parse(localStorage.getItem(claveMemoria)) || {};
+            let nombreAsesor = `Asesor ${idAsesor}`;
+            
+            datos[nombreAsesor] = datos[nombreAsesor] || { totalCompartidos: 0 };
+            datos[nombreAsesor].totalCompartidos++;
+            
+            localStorage.setItem(claveMemoria, JSON.stringify(datos));
+        }
+    } catch (error) {
+        // Si hay un error aquí, la tarjeta sigue funcionando sin bloquearse
+    }
+
+    // 2. Abre el menú para compartir o copia el enlace
+    try { 
+        await navigator.share({ title: 'BMW Euromotors de Aguascalientes', url: window.location.href }); 
+    }
+    catch { 
+        playClick(); 
+        navigator.clipboard.writeText(window.location.href).then(() => { 
+            alert("¡Enlace de tarjeta copiado!"); 
+        }); 
+    }
 }
 /* ==========================================================================
    MÓDULO DE CUESTIONARIO INTELIGENTE (POTENCIA EXTERNA + CONTROL INTERNO)
@@ -456,6 +481,20 @@ function cambiarPasoCuestionario(direccion) {
     const nuevoPasoEl = document.getElementById(`paso-${pasoActualCuestionario}`);
     if (nuevoPasoEl) nuevoPasoEl.style.display = 'block';
     
+    // ASIGNACIÓN AUTOMÁTICA
+    if (pasoActualCuestionario === 10) {
+        let turno = parseInt(localStorage.getItem('turnoAsesor') || '1');
+        let nombreAsesor = `ASESOR ${turno}`;
+        
+        // 1. Cambiamos el texto
+        document.getElementById('texto-asesor-sugerido').innerText = nombreAsesor;
+        
+        // 2. CAMBIO CLAVE: Cambiamos también el valor del selector para que sepa qué asesor es
+        document.getElementById('asesor-selector').value = nombreAsesor;
+        
+        localStorage.setItem('turnoAsesor', (turno >= 6 ? 1 : turno + 1));
+    }
+    
     // Controlar visibilidad del botón "Anterior"
     document.getElementById('btn-q-prev').style.visibility = (pasoActualCuestionario === 1) ? 'hidden' : 'visible';
     
@@ -531,5 +570,92 @@ function finalizarCuestionarioYMostrarAsesores() {
         abrirMenu();
     } else {
         console.log("No se encontró la función abrirMenu");
+    }
+}
+
+// --- FUNCIONES PARA EL NUEVO MENÚ INDEPENDIENTE DE RESEÑAS ---
+function abrirMenuReseñas() {
+    playClick();
+    const menu = document.getElementById('miMenuReseñas');
+    if(menu) {
+        menu.style.display = 'flex';
+        inicializarAcordeonReseñas();
+    }
+}
+
+function cerrarMenuReseñas() {
+    playClick();
+    const menu = document.getElementById('miMenuReseñas');
+    if(menu) {
+        menu.style.display = 'none';
+    }
+}
+
+function inicializarAcordeonReseñas() {
+    const contenedor = document.getElementById('contenedor-reseñas-asesores');
+    if(!contenedor) return;
+    contenedor.innerHTML = '';
+
+    Object.keys(CONFIG.sucursales).forEach((key, index) => {
+        const suc = CONFIG.sucursales[key];
+        const numAsesor = index + 1;
+        const imgAsesor = `assets/brand/ASESOR${numAsesor}.jpg`;
+        
+        const btn = document.createElement('button');
+        btn.className = 'sucursal-accordion-btn';
+        
+        const wrapImg = document.createElement('div');
+        wrapImg.className = 'wrapper-miniatura-asesor';
+        wrapImg.innerHTML = `<img src="${imgAsesor}" alt="Asesor ${numAsesor}" class="img-miniatura-asesor" onerror="this.src='assets/brand/logo-mini.png'">`;
+        wrapImg.onclick = (e) => {
+            e.stopPropagation();
+            playClick();
+            openLightbox(imgAsesor, [imgAsesor], true);
+        };
+        
+        const txtLabel = document.createElement('div');
+        txtLabel.className = 'texto-accordion-asesor';
+        txtLabel.innerText = `${numAsesor}. ASESOR ${numAsesor}`;
+        
+        const arrowIcon = document.createElement('i');
+        arrowIcon.className = 'fas fa-chevron-down icono-accordion-flecha';
+        
+        btn.appendChild(wrapImg);
+        btn.appendChild(txtLabel);
+        btn.appendChild(arrowIcon);
+        
+        btn.onclick = () => toggleReseñaAcordeon(key);
+        
+        const panel = document.createElement('div');
+        panel.id = `resena-${key}-panel`;
+        panel.className = 'sucursal-panel-content';
+        
+        const mensajePrivado = encodeURIComponent(`Hola Gerencia, deseo calificar la atención del ASESOR ${numAsesor}. Mi calificación es de [1 al 5] estrellas y mis comentarios son: `);
+        const waGerenciaUrl = `https://wa.me/524491472336?text=${mensajePrivado}`;
+
+        panel.innerHTML = `
+            <div class="sucursal-info-block" style="text-align: center;">
+                <p class="suc-domicilio" style="font-weight: 700; color: #fff; font-size: 0.8rem;"><i class="fas fa-shield-alt" style="color: var(--brand-accent); margin-right: 4px;"></i> Evaluación Confidencial</p>
+                <p class="suc-horario" style="font-size: 0.7rem; margin-top: 4px; color: rgba(255,255,255,0.8);">Tu asesor no verá esta calificación; va directa a la Gerencia de Ventas.</p>
+                <div class="marca-elegante-asesor">ZENITH CAR</div>
+            </div>
+            <a href="${waGerenciaUrl}" target="_blank" class="btn-menu" style="background:#f80101; color:#fff; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; padding:12px; border-radius:8px; font-weight:bold; margin-top:8px;"><i class="fas fa-star"></i> ⭐ Enviar Calificación (WhatsApp Gerencia)</a>
+        `;
+        
+        contenedor.appendChild(btn);
+        contenedor.appendChild(panel);
+    });
+}
+
+function toggleReseñaAcordeon(key) {
+    playClick();
+    const panel = document.getElementById(`resena-${key}-panel`);
+    if(!panel) return;
+    const estaVisible = panel.style.display === 'flex';
+    
+    document.querySelectorAll('#contenedor-reseñas-asesores .sucursal-panel-content').forEach(p => p.style.display = 'none');
+    
+    if (!estaVisible) {
+        panel.style.display = 'flex';
     }
 }
